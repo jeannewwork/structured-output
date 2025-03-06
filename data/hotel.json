@@ -1,0 +1,44 @@
+[
+    {
+        "id": 1,
+        "name": "Hôtel du Rivage",
+        "address": "456 Avenue des Flots, Nice",
+        "tag": "plage"
+    },
+    {
+        "id": 1,
+        "name": "Château de la Mer",
+        "address": "45 Boulevard de la Plage, Nice",
+        "tag": "plage"
+    },
+    {
+        "id": 1,
+        "name": "Hôtel des Neiges",
+        "address": "456 Chemin des Glaciers, Chamonix",
+        "tag": "montagne"
+    },
+    {
+        "id": 1,
+        "name": "Hôtel des Neiges",
+        "address": "456 Chemin des Glaciers, Chamonix",
+        "tag": "montagne"
+    },
+    {
+        "id": 1,
+        "name": "Hôtel des Neiges",
+        "address": "456 Chemin des Glaciers, Chamonix",
+        "tag": "montagne"
+    },
+    {
+        "id": 1,
+        "name": "Hôtel des Neiges",
+        "address": "456 Chemin des Glaciers, Chamonix",
+        "tag": "montagne"
+    },
+    {
+        "id": 1,
+        "name": "Hôtel des Neiges",
+        "address": "456 Chemin des Glaciers, Chamonix",
+        "tag": "montagne"
+    }
+]

@@ -1,5 +1,7 @@
 import os
 import json
+from typing import Type, List
+from pydantic import BaseModel
 from datetime import date
 from openai import OpenAI
 from dotenv import load_dotenv
@@ -37,3 +39,21 @@ def append_to_json(filename, new_data):
         json.dump(existing_data, f, indent=4, ensure_ascii=False)
 
     print(f"✅ {len(new_data)} nouveaux hôtels ajoutés à {filename}")
+
+
+def parse_openai_response(response, model: Type[BaseModel]) -> List[BaseModel]:
+
+    new_data = response.choices[0].message.content
+
+    if isinstance(new_data, str):
+        new_data = json.loads(new_data)
+
+    if isinstance(new_data, dict): 
+        new_data = [new_data]  
+
+    return [model(**item) for item in new_data]
+
+
+for i in range (5):
+    new_hotels = parse_openai_response(response, Hotel)
+    append_to_json("/Users/datacraft/structured-output/data/hotel.json", new_hotels)
