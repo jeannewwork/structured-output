@@ -13,3 +13,9 @@ class Room(BaseModel):
     hotel_id: int 
     price: float
     capacity: int
+
+class Option(BaseModel):
+    id: int 
+    name: str 
+    tag: Literal["hotel", "room", "stay"]
+
