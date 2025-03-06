@@ -1,0 +1,10 @@
+{
+    "Hotel": ["Hotel"],
+    "Room": ["Hotel", "Room"],
+    "Option": ["Hotel", "Room"],
+    "RoomOption": ["Room", "Option"],
+    "HotelOption": ["Hotel", "Option"],
+    "StayOption": ["Hotel", "Stay", "Option"],
+    "Customer": ["Customer"],
+    "Reservation": ["Hotel", "Room", "Customer", "Reservation"]
+  }

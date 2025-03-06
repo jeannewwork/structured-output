@@ -1,13 +1,9 @@
 import os
-import json
-from typing import Type, List
-from pydantic import BaseModel
-from datetime import date
 from openai import OpenAI
 from dotenv import load_dotenv
 
 from structured_output.class_database import Hotel, Room, Option, RoomOption, HotelOption, StayOption, Customer, Reservation
-from structured_output.utils import append_to_json, parse_openai_response
+from structured_output.utils import append_to_json, parse_openai_response, get_system_prompt_for_class
 
 load_dotenv()
 
@@ -17,15 +13,24 @@ client = OpenAI(
 
 MODEL_NAME = "gpt-4o-mini"
 
-response = client.beta.chat.completions.parse(
-    model=MODEL_NAME,
-    messages=[
-        {"role": "system", "content": "Génère {n} hôtels sous forme de JSON avec id, name, address, tag ('montagne', 'plage', 'ville', 'campagne'). "},
-        {"role": "user", "content": "Voici un premier exemple : id=1, name=Hôtel du Lac, address=123 Rue des Alpes, Annecy, tag=montagne, tu peux changer les valeurs tant que tu respectes la structure"},
-    ],
-    response_format=Hotel,
-)
+def generate_response(class_name: str, response_format, n: int = 5):
+    system_prompt, user_prompt = get_system_prompt_for_class(class_name)
 
-for i in range (5):
-    new_hotels = parse_openai_response(response, Hotel)
-    append_to_json("/Users/datacraft/structured-output/data/hotel.json", new_hotels)
+    if not system_prompt or not user_prompt:
+        raise ValueError(f"Aucun prompt valide trouvé pour {class_name}.")
+
+    # Formatage du prompt utilisateur
+    user_prompt = user_prompt.replace("{n}", str(n))
+
+    # Appel à OpenAI
+    response = client.beta.chat.completions.parse(
+        model=MODEL_NAME,
+        messages=[
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": user_prompt},
+        ],
+        response_format=response_format,
+    )
+
+    return response
+

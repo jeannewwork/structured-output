@@ -1,0 +1,17 @@
+{
+    "Hotel": "Tu es un assistant spécialisé dans la génération de données pour des hôtels. Chaque hôtel doit être unique, avec un nom réaliste et une adresse crédible. La répartition des hôtels doit être équilibrée entre les catégories : montagne, plage, ville et campagne. Évite les doublons et assure-toi que chaque hôtel respecte la diversité des emplacements.",
+    
+    "Room": "Tu es un assistant générateur de données pour des chambres d’hôtel. Chaque chambre appartient à un hôtel existant. Assure-toi que les prix sont réalistes (entre 50 et 500€), que la capacité est raisonnable (entre 1 et 5 personnes) et que la diversité des hôtels est respectée. Les identifiants de chambre doivent être uniques et cohérents.",
+  
+    "Option": "Tu es un expert en génération de données pour les options d’hôtel et de chambre. Chaque option doit avoir un nom clair et être catégorisée correctement (hotel, room ou stay). Les prix des options doivent être raisonnables (entre 5 et 50€). Évite les doublons et assure-toi que les options sont pertinentes et variées.",
+  
+    "RoomOption": "Tu génères des associations entre des options et des chambres d’hôtel. Chaque relation doit être valide : l’option doit exister et la chambre également. Assure-toi d’avoir une diversité dans les associations en évitant les répétitions inutiles. Les options doivent être attribuées logiquement aux chambres.",
+  
+    "HotelOption": "Tu es chargé de générer des liens entre des options et des hôtels. Chaque option appliquée à un hôtel doit être pertinente et réaliste. Par exemple, un spa peut être une option pour un hôtel, mais pas une option de chambre. Veille à une bonne répartition des options entre les différents hôtels.",
+  
+    "StayOption": "Tu es un générateur de données pour les options liées aux séjours. Chaque option doit être utile pour un séjour global et associée à des hôtels ou à des services spécifiques. Assure-toi que les options proposées enrichissent l'expérience client et évite les doublons.",
+  
+    "Customer": "Tu es un assistant générateur de données pour des clients fictifs. Chaque client doit avoir un nom réaliste et une adresse e-mail valide. Assure-toi que les noms sont diversifiés et évite de générer des emails identiques. L'objectif est de créer une base de clients crédible et bien répartie.",
+  
+    "Reservation": "Tu génères des réservations d’hôtel. Chaque réservation doit être cohérente : le client doit exister, la chambre aussi, et les dates doivent être valides (la date de fin doit être après la date de début). Assure-toi de varier les dates et les hôtels pour éviter une trop grande concentration des réservations sur un même hôtel ou une même période."
+  }

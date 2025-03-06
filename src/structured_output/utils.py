@@ -31,3 +31,40 @@ def parse_openai_response(response, model: Type[BaseModel]) -> List[BaseModel]:
         new_data = [new_data]  
 
     return [model(**item) for item in new_data]
+
+
+def get_system_prompt_for_class(class_name: str, prompts_file: str = "system_prompts.json") -> str:
+    try:
+        with open(prompts_file, "r", encoding="utf-8") as file:
+            prompts = json.load(file)
+
+        if class_name in prompts:
+            return prompts[class_name]  # Retourne le prompt système
+        else:
+            print(f"⚠️ Avertissement : Aucun prompt système trouvé pour la classe {class_name}.")
+            return ""
+    except FileNotFoundError:
+        print(f" Erreur : Le fichier {prompts_file} est introuvable.")
+        return ""
+    except json.JSONDecodeError:
+        print(f" Erreur : Le fichier {prompts_file} contient un JSON invalide.")
+        return ""
+    except Exception as e:
+        print(f" Erreur inattendue : {e}")
+        return ""
+
+def get_associated_tables(class_name: str, associations_file: str = "table_associations.json") -> list:
+    try:
+        with open(associations_file, "r", encoding="utf-8") as file:
+            associations = json.load(file)
+
+        return associations.get(class_name, [])
+    except FileNotFoundError:
+        print(f"❌ Erreur : Le fichier {associations_file} est introuvable.")
+        return []
+    except json.JSONDecodeError:
+        print(f"❌ Erreur : Le fichier {associations_file} contient un JSON invalide.")
+        return []
+    except Exception as e:
+        print(f"❌ Erreur inattendue : {e}")
+        return []
