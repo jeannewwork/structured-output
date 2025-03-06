@@ -23,5 +23,17 @@ response = client.beta.chat.completions.parse(
     response_format=Hotel,
 )
 
-response_content = response.choices[0].message.content
-print(response_content)
+def append_to_json(filename, new_data):
+    try:
+        
+        with open(filename, "r", encoding="utf-8") as f:
+            existing_data = json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        
+        existing_data = []
+
+    existing_data.extend([item.dict() for item in new_data])
+    with open(filename, "w", encoding="utf-8") as f:
+        json.dump(existing_data, f, indent=4, ensure_ascii=False)
+
+    print(f"✅ {len(new_data)} nouveaux hôtels ajoutés à {filename}")
