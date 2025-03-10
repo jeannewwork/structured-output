@@ -1,92 +1,62 @@
 [
     {
         "id": 1,
-        "name": "Mountain Lodge Retreat",
-        "address": "125 Alpine Way, Aspen, CO 81611",
+        "name": "Alpine Haven Resort",
+        "address": "123 Summit Peaks Road, Aspen, CO 81611, USA",
         "tag": "mountain"
     },
     {
         "id": 2,
-        "name": "Mountain View Lodge",
-        "address": "123 Mountain Ridge Road, Asheville, NC 28801",
-        "tag": "mountain"
+        "name": "Oceanfront Serenity Inn",
+        "address": "1234 Coastal Drive, Paradise Bay",
+        "tag": "beach"
     },
     {
         "id": 3,
-        "name": "The Majestic Mountain Resort",
-        "address": "123 Alpine Way, Aspen, CO 81611, USA",
-        "tag": "mountain"
+        "name": "Transit Urban Resort",
+        "address": "47 Lincoln Square, Manhattan, New York, USA",
+        "tag": "city"
     },
     {
         "id": 4,
-        "name": "Mountain View Lodge",
-        "address": "123 Alpine Road, Summitville, CO 80435",
+        "name": "Himalayan Peaks Lodge",
+        "address": "456 Alpine Dr, Aspen, CO 81611, USA",
         "tag": "mountain"
     },
     {
         "id": 5,
-        "name": "Cedar Ridge Resort",
-        "address": "123 Mountain View Road, Aspen, CO 81611",
+        "name": "Alpine Retreat Lodge",
+        "address": "123 Sierra Trail, Summit County, CO 80461, USA",
         "tag": "mountain"
     },
     {
         "id": 6,
-        "name": "Pine Valley Retreat",
-        "address": "123 Pine Valley Rd, Aspen, CO 81611",
+        "name": "Eagle's Nest Resort",
+        "address": "Mountain Rd, Estes Park, CO 80517",
         "tag": "mountain"
     },
     {
         "id": 7,
-        "name": "Mountain View Lodge",
-        "address": "123 Alpine Lane, Aspen, CO 81611",
-        "tag": "mountain"
+        "name": "Willow Springs Retreat",
+        "address": "389 Greenhaven Road, Caledonia Valley, VA 22904, USA",
+        "tag": "countryside"
     },
     {
         "id": 8,
-        "name": "The Green Peak Lodge",
-        "address": "123 Mountain View Road, Aspen, CO, USA",
-        "tag": "mountain"
+        "name": "Whispering Pines Retreat",
+        "address": "45 Greenfield Ave, Arbor Valley, VT",
+        "tag": "countryside"
     },
     {
         "id": 9,
-        "name": "Mountain View Lodge",
-        "address": "123 Alpine Way, Aspen, CO 81611",
-        "tag": "mountain"
+        "name": "Golden Shores Resort",
+        "address": "120 Oceanview Cliffs Rd, Palm Coast, FL 32164, USA",
+        "tag": "beach"
     },
     {
         "id": 10,
-        "name": "The Mountain Lodge",
-        "address": "123 Alpine Rd, Aspen, CO 81611",
-        "tag": "mountain"
-    },
-    {
-        "id": 11,
-        "name": "Seaside Resort",
-        "address": "123 Oceanview Drive, Malibu, CA, 90265",
-        "tag": "beach"
-    },
-    {
-        "id": 12,
-        "name": "Mountain Lodge Retreat",
-        "address": "123 Alpine Way, Aspen, CO, 81611",
-        "tag": "mountain"
-    },
-    {
-        "id": 13,
-        "name": "The Highland Retreat",
-        "address": "456 Mountain View Road, Aspen, CO 81611",
-        "tag": "mountain"
-    },
-    {
-        "id": 14,
-        "name": "Sunset Beach Resort",
-        "address": "123 Ocean Drive, Malibu, CA 90265",
-        "tag": "beach"
-    },
-    {
-        "id": 15,
-        "name": "Mountain Escape Lodge",
-        "address": "123 Alpine Drive, Summit County, CO 80424",
-        "tag": "mountain"
+        "name": "Whispering Pines Guesthouse",
+        "address": "12 Lakeview Circle, Foxfield, Worcestershire, WV15 QW9, United Kingdom",
+        "tag": "countryside"
     }
 ]

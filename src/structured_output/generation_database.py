@@ -3,11 +3,12 @@ from openai import OpenAI
 from dotenv import load_dotenv
 import json
 import random
+from datetime import date
 from pydantic import BaseModel
 from typing import Type, List, Literal, Any, Dict, get_args
 
 
-from structured_output.class_database import Hotel
+from structured_output.class_database import Hotel, Option, Reservation, Room, Customer 
 from structured_output.utils import get_system_prompt_for_class, get_data, generate_user_prompt, save_data
 
 load_dotenv()
@@ -16,7 +17,7 @@ client = OpenAI(
     base_url="https://api.openai.com/v1", api_key=os.getenv("OPENAI_API_KEY")
 )
 
-MODEL_NAME = "gpt-4o-mini"
+MODEL_NAME = "gpt-4o"
 
 def generate_partial_data(model: Type[BaseModel], n: int, existing_data: List[Dict[str, Any]] = None) -> List[BaseModel]:
     """
@@ -46,8 +47,14 @@ def generate_partial_data(model: Type[BaseModel], n: int, existing_data: List[Di
                 obj_data[field_name] = last_id + i  # Incremental ID
             elif hasattr(field_type, "__origin__") and field_type.__origin__ is Literal:
                 obj_data[field_name] = random.choice(get_args(field_type))  # Random Literal selection
+            elif field_type == float:  
+                obj_data[field_name] = 0.0  
+            elif field_type == int:
+                obj_data[field_name] = 1 
+            elif field_type == str:
+                obj_data[field_name] = "2025-06-01"
             else:
-                obj_data[field_name] = "to be completed"
+                obj_data[field_name] = "null"
 
         generated_data.append(model(**obj_data))
 
@@ -79,6 +86,7 @@ def generate_response(class_name: str, response_format: Type[BaseModel], data_pa
             {"role": "user", "content": user_prompt},
         ],
         response_format=response_format,
+        temperature=1.5,
     )
 
     generated_data = json.loads(response.choices[0].message.content.strip())
@@ -90,17 +98,17 @@ def generate_response(class_name: str, response_format: Type[BaseModel], data_pa
 
 
 if __name__ == "__main__":
-    class_name = "Hotel"
-    data_path = "/Users/datacraft/structured-output/data/hotel.json"
+    class_name = "Room"
+    data_path = "/Users/datacraft/structured-output/data/room.json"
 
-    partial_hotels = generate_partial_data(Hotel, n=15)
+    partial_hotels = generate_partial_data(Room, n=10)
 
     save_data(partial_hotels, data_path)
 
     completed_hotels = []
 
     for hotel in partial_hotels:
-        completed_hotel = generate_response(class_name, Hotel, data_path, hotel.id)
+        completed_hotel = generate_response(class_name, Room, data_path, hotel.id)
         completed_hotels.append(completed_hotel)
 
     save_data(completed_hotels, data_path)

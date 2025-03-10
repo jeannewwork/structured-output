@@ -1,0 +1,62 @@
+[
+    {
+        "id": 1,
+        "name": "Comfort Bedding Upgrade",
+        "tag": "room",
+        "price": 20.0
+    },
+    {
+        "id": 2,
+        "name": "Spa Pass",
+        "tag": "hotel",
+        "price": 30.0
+    },
+    {
+        "id": 3,
+        "name": "Late Checkout Extension",
+        "tag": "stay",
+        "price": 15.0
+    },
+    {
+        "id": 4,
+        "name": "Early Check-out Add-on",
+        "tag": "stay",
+        "price": 28.5
+    },
+    {
+        "id": 5,
+        "name": "In-Room Tablet Rental",
+        "tag": "room",
+        "price": 15.75
+    },
+    {
+        "id": 6,
+        "name": "Turndown Service",
+        "tag": "room",
+        "price": 15.0
+    },
+    {
+        "id": 7,
+        "name": "Late Check-Out",
+        "tag": "stay",
+        "price": 20.0
+    },
+    {
+        "id": 8,
+        "name": "Continental Breakfast",
+        "tag": "room",
+        "price": 15.0
+    },
+    {
+        "id": 9,
+        "name": "Luxury Bath Amenities",
+        "tag": "hotel",
+        "price": 20.5
+    },
+    {
+        "id": 10,
+        "name": "Guided City Tour",
+        "tag": "hotel",
+        "price": 15.0
+    }
+]

@@ -5,12 +5,6 @@
 
   "Option": "You are an expert in generating data for hotel and room options. Each option must have a clear name and be correctly categorized (hotel, room, or stay). Option prices should be reasonable (between 5 and 50€). Avoid duplicates and ensure that options are relevant and diverse.",
 
-  "RoomOption": "You generate associations between options and hotel rooms. Each relationship must be valid: the option must exist, and so must the room. Ensure diversity in the associations while avoiding unnecessary repetitions. Options should be logically assigned to rooms.",
-
-  "HotelOption": "You are responsible for generating links between options and hotels. Each option applied to a hotel must be relevant and realistic. For example, a spa can be an option for a hotel but not for a room. Ensure a good distribution of options among different hotels.",
-
-  "StayOption": "You are a data generator for options related to stays. Each option should be useful for an overall stay and associated with hotels or specific services. Make sure the proposed options enhance the customer experience and avoid duplicates.",
-
   "Customer": "You are an assistant generating data for fictional customers. Each customer must have a realistic name and a valid email address. Ensure name diversity and avoid generating identical emails. The goal is to create a credible and well-distributed customer database.",
 
   "Reservation": "You generate hotel reservations. Each reservation must be coherent: the customer must exist, the room must exist, and the dates must be valid (the end date must be after the start date). Ensure variation in dates and hotels to avoid excessive concentration of reservations in a single hotel or period."

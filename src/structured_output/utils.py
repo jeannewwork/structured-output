@@ -30,10 +30,13 @@ def get_data(data_path, obj_id):
         with open(data_path, "r", encoding="utf-8") as file:
             database = json.load(file)
 
-        obj_to_complete = next((item for item in database if item["id"] == obj_id), None)
+        obj_to_complete = database[obj_id-1] 
+        
 
         if not obj_to_complete:
             raise ValueError(f"Aucune donnée trouvée pour ID {obj_id} dans {data_path}")
+        else : 
+            return obj_to_complete
 
     except FileNotFoundError:
         raise FileNotFoundError(f"Erreur : Le fichier {data_path} est introuvable.")
@@ -58,13 +61,13 @@ def generate_user_prompt(obj_to_complete: Dict[str, Any]) -> str:
         f"{json.dumps(obj_to_complete, indent=4, ensure_ascii=False)}"
     )
 
-def save_data(data: List[BaseModel], data_path: str) -> None:
+def save_data(data: list, data_path: str) -> None:
     """
     Saves a list of Pydantic objects to a JSON file.
 
     Args:
-        data (List[BaseModel]): The list of objects to save.
+        data (list): The list of objects to save.
         data_path (str): The file path for the JSON file.
     """
     with open(data_path, "w", encoding="utf-8") as file:
-        json.dump([item.model_dump() for item in data], file, indent=4, ensure_ascii=False)
+        json.dump([item.model_dump() for item in data], file, indent=4, ensure_ascii=False, default=str)
