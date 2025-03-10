@@ -101,15 +101,15 @@ if __name__ == "__main__":
     class_name = "Room"
     data_path = "/Users/datacraft/structured-output/data/room.json"
 
-    partial_hotels = generate_partial_data(Room, n=10)
+    partial_data= generate_partial_data(Room, n=10)
 
-    save_data(partial_hotels, data_path)
+    save_data(partial_data, data_path)
 
-    completed_hotels = []
+    completed_data = []
 
-    for hotel in partial_hotels:
-        completed_hotel = generate_response(class_name, Room, data_path, hotel.id)
-        completed_hotels.append(completed_hotel)
+    for data in partial_data:
+        completed_hotel = generate_response(class_name, Room, data_path, data.id)
+        completed_data.append(completed_hotel)
 
-    save_data(completed_hotels, data_path)
+    save_data(completed_data, data_path)
 
