@@ -4,10 +4,11 @@ from dotenv import load_dotenv
 import json
 import random
 from pydantic import BaseModel
-from typing import Type, List, get_args, Literal
+from typing import Type, List, Literal, Any, Dict, get_args
 
-from structured_output.class_database import Hotel, Room, Option, RoomOption, HotelOption, StayOption, Customer, Reservation
-from structured_output.utils import append_to_json, parse_openai_response, get_system_prompt_for_class, get_associated_tables, load_existing_data, get_user_prompt_system, get_data
+
+from structured_output.class_database import Hotel
+from structured_output.utils import get_system_prompt_for_class, get_data, generate_user_prompt, save_data
 
 load_dotenv()
 
@@ -17,41 +18,59 @@ client = OpenAI(
 
 MODEL_NAME = "gpt-4o-mini"
 
-def generate_partial_data(model: Type[BaseModel], n: int, existing_data: List[dict] = None) -> List[BaseModel]:
+def generate_partial_data(model: Type[BaseModel], n: int, existing_data: List[Dict[str, Any]] = None) -> List[BaseModel]:
+    """
+    Generates a list of partially completed objects based on the given Pydantic model.
+
+    - The `id` field is incremented sequentially.
+    - Literal fields are randomly assigned values.
+    - Other fields are initialized with "to be completed".
+
+    Args:
+        model (Type[BaseModel]): The Pydantic model class.
+        n (int): Number of objects to generate.
+        existing_data (List[Dict[str, Any]], optional): Existing database to avoid duplicate IDs.
+
+    Returns:
+        List[BaseModel]: List of partially completed model instances.
+    """
     generated_data = []
 
-    if existing_data:
-        last_id = max((item["id"] for item in existing_data), default=0)
-    else:
-        last_id = 0
+    last_id = max((item["id"] for item in existing_data), default=0) if existing_data else 0
 
     for i in range(1, n + 1):
-        obj_data = {}
+        obj_data: Dict[str, Any] = {}
 
-        for field_name, field in model.__annotations__.items():
+        for field_name, field_type in model.__annotations__.items():
             if field_name == "id":
-                obj_data[field_name] = last_id + i  
-            elif hasattr(field, "__origin__") and field.__origin__ is Literal:
-                obj_data[field_name] = random.choice(get_args(field))  
+                obj_data[field_name] = last_id + i  # Incremental ID
+            elif hasattr(field_type, "__origin__") and field_type.__origin__ is Literal:
+                obj_data[field_name] = random.choice(get_args(field_type))  # Random Literal selection
             else:
-                obj_data[field_name] = "à compléter"
+                obj_data[field_name] = "to be completed"
+
         generated_data.append(model(**obj_data))
 
     return generated_data
 
 
-def generate_response(class_name: str, response_format, data_path: str, obj_id: int):
 
+def generate_response(class_name: str, response_format: Type[BaseModel], data_path: str, obj_id: int) -> BaseModel:
+    """
+    Generates missing values for a given object while preserving existing fields.
+
+    Args:
+        class_name (str): The class name (e.g., "Hotel").
+        response_format (Type[BaseModel]): The Pydantic model for validation.
+        data_path (str): Path to the database file.
+        obj_id (int): ID of the object to complete.
+
+    Returns:
+        BaseModel: The completed and validated object.
+    """
     system_prompt = get_system_prompt_for_class(class_name)
-
     obj_to_complete = get_data(data_path, obj_id)
-
-    user_prompt = (
-    "Complete the following data while strictly preserving the existing values. "
-    "Ensure that all present fields remain unchanged. "
-    "Generate only the missing values in a coherent and contextually appropriate manner based on the provided information.\n\n"
-    f"{json.dumps(obj_to_complete, indent=4, ensure_ascii=False)}"
-)
+    user_prompt = generate_user_prompt(obj_to_complete)
 
     response = client.beta.chat.completions.parse(
         model=MODEL_NAME,
@@ -65,8 +84,7 @@ def generate_response(class_name: str, response_format, data_path: str, obj_id: 
     generated_data = json.loads(response.choices[0].message.content.strip())
 
     if generated_data["id"] != obj_id:
-        generated_data["id"] = obj_id
-    
+        generated_data["id"] = obj_id 
 
     return response_format(**generated_data)
 
@@ -75,22 +93,15 @@ if __name__ == "__main__":
     class_name = "Hotel"
     data_path = "/Users/datacraft/structured-output/data/hotel.json"
 
-    print("🔄 Génération de la base partielle...")
-    partial_hotels = generate_partial_data(Hotel, n=5) 
+    partial_hotels = generate_partial_data(Hotel, n=15)
 
-    with open(data_path, "w", encoding="utf-8") as file:
-        json.dump([hotel.model_dump() for hotel in partial_hotels], file, indent=4, ensure_ascii=False)
-    
-    print(f"✅ Base partielle enregistrée dans {data_path}")
+    save_data(partial_hotels, data_path)
 
     completed_hotels = []
-    
-    print("🔄 Complétion des hôtels avec l'IA...")
+
     for hotel in partial_hotels:
         completed_hotel = generate_response(class_name, Hotel, data_path, hotel.id)
         completed_hotels.append(completed_hotel)
 
-    with open(data_path, "w", encoding="utf-8") as file:
-        json.dump([hotel.dict() for hotel in completed_hotels], file, indent=4, ensure_ascii=False)
+    save_data(completed_hotels, data_path)
 
-    print(f"✅ Base complétée enregistrée dans {data_path}")

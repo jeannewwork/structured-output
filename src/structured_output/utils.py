@@ -1,37 +1,6 @@
-
 import json
-from typing import Type, List
+from typing import Dict, Any, Literal, List
 from pydantic import BaseModel
-
-
-def append_to_json(filename, new_data):
-    try:
-        
-        with open(filename, "r", encoding="utf-8") as f:
-            existing_data = json.load(f)
-    except (FileNotFoundError, json.JSONDecodeError):
-        
-        existing_data = []
-
-    existing_data.extend([item.dict() for item in new_data])
-    with open(filename, "w", encoding="utf-8") as f:
-        json.dump(existing_data, f, indent=4, ensure_ascii=False)
-
-    print(f"✅ {len(new_data)} nouveaux hôtels ajoutés à {filename}")
-
-
-def parse_openai_response(response, model: Type[BaseModel]) -> List[BaseModel]:
-
-    new_data = response.choices[0].message.content
-
-    if isinstance(new_data, str):
-        new_data = json.loads(new_data)
-
-    if isinstance(new_data, dict): 
-        new_data = [new_data]  
-
-    return [model(**item) for item in new_data]
-
 
 def get_system_prompt_for_class(class_name: str, prompts_file: str = "/Users/datacraft/structured-output/data/system_prompt.json") -> str:
     with open(prompts_file, "r", encoding="utf-8") as file:
@@ -43,57 +12,20 @@ def get_system_prompt_for_class(class_name: str, prompts_file: str = "/Users/dat
         print(f"Aucun prompt système trouvé pour la classe {class_name}.")
         return ""
 
-def get_associated_tables(class_name: str, associations_file: str = "/Users/datacraft/structured-output/data/table_association.json") -> list:
-    with open(associations_file, "r", encoding="utf-8") as file:
-        associations = json.load(file)
-
-    return associations.get(class_name, [])
-
-    
-def load_existing_data(tables: list, data_path: str = "/Users/datacraft/structured-output/data/") -> dict:
+def get_data(data_path, obj_id):
     """
-    Charge les données existantes des tables associées.
+    Retrieves a specific object by its ID from a JSON file.
 
     Args:
-        tables (list): Liste des tables à charger.
-        data_path (str): Chemin vers le dossier contenant les fichiers JSON des bases.
+        data_path (str): Path to the JSON database file.
+        obj_id (int): The ID of the object to retrieve.
 
     Returns:
-        dict: Un dictionnaire contenant les données chargées par table.
+        Dict[str, Any]: The retrieved object.
+
+    Raises:
+        ValueError: If the object is not found.
     """
-    data = {}
-
-    for table in tables:
-        file_path = f"{data_path}{table.lower()}.json"
-
-        try:
-            with open(file_path, "r", encoding="utf-8") as file:
-                content = file.read().strip()  # Lire et supprimer les espaces vides
-                
-                if not content:  # 📌 Vérifie si le fichier est vide
-                    print(f"⚠️ Avertissement : {file_path} est vide. Initialisation d'une liste vide.")
-                    data[table] = []
-                else:
-                    data[table] = json.loads(content)  # Charger les données si le fichier n'est pas vide
-
-        except FileNotFoundError:
-            print(f"⚠️ Avertissement : Le fichier {file_path} est introuvable. Initialisation d'une liste vide.")
-            data[table] = []
-        except json.JSONDecodeError:
-            print(f"❌ Erreur : Le fichier {file_path} contient un JSON invalide. Vérifie son format.")
-            data[table] = []
-        except Exception as e:
-            print(f"❌ Erreur inattendue pour {file_path} : {e}")
-            data[table] = []
-
-    return data
-
-def get_user_prompt_system(prompt_file: str = "/Users/datacraft/structured-output/data/prompt_system_2.json") -> str:
-    with open(prompt_file, "r", encoding="utf-8") as file:
-        data = json.load(file)
-    return data.get("system", "")
-
-def get_data(data_path, obj_id):
     try:
         with open(data_path, "r", encoding="utf-8") as file:
             database = json.load(file)
@@ -107,3 +39,32 @@ def get_data(data_path, obj_id):
         raise FileNotFoundError(f"Erreur : Le fichier {data_path} est introuvable.")
     except json.JSONDecodeError:
         raise ValueError(f"Erreur : Le fichier {data_path} contient un JSON invalide.")
+    
+
+def generate_user_prompt(obj_to_complete: Dict[str, Any]) -> str:
+    """
+    Constructs a user prompt for OpenAI to complete missing values in a given object.
+
+    Args:
+        obj_to_complete (Dict[str, Any]): The object with missing values.
+
+    Returns:
+        str: The formatted user prompt.
+    """
+    return (
+        "Complete the following data while strictly preserving the existing values. "
+        "Ensure that all present fields remain unchanged. "
+        "Generate only the missing values in a coherent and contextually appropriate manner based on the provided information.\n\n"
+        f"{json.dumps(obj_to_complete, indent=4, ensure_ascii=False)}"
+    )
+
+def save_data(data: List[BaseModel], data_path: str) -> None:
+    """
+    Saves a list of Pydantic objects to a JSON file.
+
+    Args:
+        data (List[BaseModel]): The list of objects to save.
+        data_path (str): The file path for the JSON file.
+    """
+    with open(data_path, "w", encoding="utf-8") as file:
+        json.dump([item.model_dump() for item in data], file, indent=4, ensure_ascii=False)

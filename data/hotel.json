@@ -1,32 +1,92 @@
 [
     {
         "id": 1,
-        "name": "Seaside Escape Hotel",
-        "address": "123 Ocean Drive, Miami Beach, FL 33139",
-        "tag": "plage"
+        "name": "Mountain Lodge Retreat",
+        "address": "125 Alpine Way, Aspen, CO 81611",
+        "tag": "mountain"
     },
     {
         "id": 2,
-        "name": "The Grand Mountain Resort",
-        "address": "123 Alpine Way, Aspen, CO 81611, USA",
-        "tag": "montagne"
+        "name": "Mountain View Lodge",
+        "address": "123 Mountain Ridge Road, Asheville, NC 28801",
+        "tag": "mountain"
     },
     {
         "id": 3,
-        "name": "Grand Lakeview Resort",
-        "address": "123 Lakeside Drive, Evergreen, CO 80439",
-        "tag": "montagne"
+        "name": "The Majestic Mountain Resort",
+        "address": "123 Alpine Way, Aspen, CO 81611, USA",
+        "tag": "mountain"
     },
     {
         "id": 4,
-        "name": "Seaside Haven",
-        "address": "123 Ocean Drive, Sunny Beach, FL 33139",
-        "tag": "plage"
+        "name": "Mountain View Lodge",
+        "address": "123 Alpine Road, Summitville, CO 80435",
+        "tag": "mountain"
     },
     {
         "id": 5,
-        "name": "The Grand Mountain Lodge",
-        "address": "123 Alpine Way, Denver, CO, 80202",
-        "tag": "montagne"
+        "name": "Cedar Ridge Resort",
+        "address": "123 Mountain View Road, Aspen, CO 81611",
+        "tag": "mountain"
+    },
+    {
+        "id": 6,
+        "name": "Pine Valley Retreat",
+        "address": "123 Pine Valley Rd, Aspen, CO 81611",
+        "tag": "mountain"
+    },
+    {
+        "id": 7,
+        "name": "Mountain View Lodge",
+        "address": "123 Alpine Lane, Aspen, CO 81611",
+        "tag": "mountain"
+    },
+    {
+        "id": 8,
+        "name": "The Green Peak Lodge",
+        "address": "123 Mountain View Road, Aspen, CO, USA",
+        "tag": "mountain"
+    },
+    {
+        "id": 9,
+        "name": "Mountain View Lodge",
+        "address": "123 Alpine Way, Aspen, CO 81611",
+        "tag": "mountain"
+    },
+    {
+        "id": 10,
+        "name": "The Mountain Lodge",
+        "address": "123 Alpine Rd, Aspen, CO 81611",
+        "tag": "mountain"
+    },
+    {
+        "id": 11,
+        "name": "Seaside Resort",
+        "address": "123 Oceanview Drive, Malibu, CA, 90265",
+        "tag": "beach"
+    },
+    {
+        "id": 12,
+        "name": "Mountain Lodge Retreat",
+        "address": "123 Alpine Way, Aspen, CO, 81611",
+        "tag": "mountain"
+    },
+    {
+        "id": 13,
+        "name": "The Highland Retreat",
+        "address": "456 Mountain View Road, Aspen, CO 81611",
+        "tag": "mountain"
+    },
+    {
+        "id": 14,
+        "name": "Sunset Beach Resort",
+        "address": "123 Ocean Drive, Malibu, CA 90265",
+        "tag": "beach"
+    },
+    {
+        "id": 15,
+        "name": "Mountain Escape Lodge",
+        "address": "123 Alpine Drive, Summit County, CO 80424",
+        "tag": "mountain"
     }
 ]
