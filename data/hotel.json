@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "name": "Seaside Escape Hotel",
+        "address": "123 Ocean Drive, Miami Beach, FL 33139",
+        "tag": "plage"
+    },
+    {
+        "id": 2,
+        "name": "The Grand Mountain Resort",
+        "address": "123 Alpine Way, Aspen, CO 81611, USA",
+        "tag": "montagne"
+    },
+    {
+        "id": 3,
+        "name": "Grand Lakeview Resort",
+        "address": "123 Lakeside Drive, Evergreen, CO 80439",
+        "tag": "montagne"
+    },
+    {
+        "id": 4,
+        "name": "Seaside Haven",
+        "address": "123 Ocean Drive, Sunny Beach, FL 33139",
+        "tag": "plage"
+    },
+    {
+        "id": 5,
+        "name": "The Grand Mountain Lodge",
+        "address": "123 Alpine Way, Denver, CO, 80202",
+        "tag": "montagne"
+    }
+]

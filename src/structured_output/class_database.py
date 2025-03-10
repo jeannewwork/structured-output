@@ -4,10 +4,10 @@ from datetime import date
 
 
 class Hotel(BaseModel):
-    id: int 
+    id: int
     name: str
     address: str
-    tag: Literal["montagne", "plage", "ville", "campagne"]
+    tag: Literal["montagne", "ville", "plage", "campagne"] 
 
 
 class Room(BaseModel):
