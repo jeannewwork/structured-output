@@ -17,8 +17,7 @@ client = OpenAI(
     base_url="https://api.openai.com/v1", api_key=os.getenv("OPENAI_API_KEY")
 )
 
-MODEL_NAME = "gpt-4o"
-
+MODEL_NAME = "gpt-4o-mini"
 def generate_partial_data(model: Type[BaseModel], n: int, existing_data: List[Dict[str, Any]] = None) -> List[BaseModel]:
     """
     Generates a list of partially completed objects based on the given Pydantic model.
