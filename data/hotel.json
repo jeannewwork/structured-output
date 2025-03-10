@@ -1,0 +1,62 @@
+[
+    {
+        "id": 1,
+        "name": "Alpine Haven Resort",
+        "address": "123 Summit Peaks Road, Aspen, CO 81611, USA",
+        "tag": "mountain"
+    },
+    {
+        "id": 2,
+        "name": "Oceanfront Serenity Inn",
+        "address": "1234 Coastal Drive, Paradise Bay",
+        "tag": "beach"
+    },
+    {
+        "id": 3,
+        "name": "Transit Urban Resort",
+        "address": "47 Lincoln Square, Manhattan, New York, USA",
+        "tag": "city"
+    },
+    {
+        "id": 4,
+        "name": "Himalayan Peaks Lodge",
+        "address": "456 Alpine Dr, Aspen, CO 81611, USA",
+        "tag": "mountain"
+    },
+    {
+        "id": 5,
+        "name": "Alpine Retreat Lodge",
+        "address": "123 Sierra Trail, Summit County, CO 80461, USA",
+        "tag": "mountain"
+    },
+    {
+        "id": 6,
+        "name": "Eagle's Nest Resort",
+        "address": "Mountain Rd, Estes Park, CO 80517",
+        "tag": "mountain"
+    },
+    {
+        "id": 7,
+        "name": "Willow Springs Retreat",
+        "address": "389 Greenhaven Road, Caledonia Valley, VA 22904, USA",
+        "tag": "countryside"
+    },
+    {
+        "id": 8,
+        "name": "Whispering Pines Retreat",
+        "address": "45 Greenfield Ave, Arbor Valley, VT",
+        "tag": "countryside"
+    },
+    {
+        "id": 9,
+        "name": "Golden Shores Resort",
+        "address": "120 Oceanview Cliffs Rd, Palm Coast, FL 32164, USA",
+        "tag": "beach"
+    },
+    {
+        "id": 10,
+        "name": "Whispering Pines Guesthouse",
+        "address": "12 Lakeview Circle, Foxfield, Worcestershire, WV15 QW9, United Kingdom",
+        "tag": "countryside"
+    }
+]

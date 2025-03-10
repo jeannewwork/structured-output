@@ -7,7 +7,15 @@ authors = [
     { name = "Jeanne", email = "jeanne.wwork@gmail.com" }
 ]
 requires-python = ">=3.13"
-dependencies = []
+dependencies = [
+    "bs4>=0.0.2",
+    "datetime>=5.5",
+    "dotenv>=0.9.9",
+    "openai>=1.65.4",
+    "pydantic>=2.10.6",
+    "requests>=2.32.3",
+    "typing>=3.10.0.0",
+]
 
 [project.scripts]
 structured-output = "structured_output:main"

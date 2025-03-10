@@ -1,0 +1,52 @@
+[
+    {
+        "id": 1,
+        "name": "Maya Collins",
+        "mail": "mayacollins@examplemail.com"
+    },
+    {
+        "id": 2,
+        "name": "Raven Olaniyi",
+        "mail": "rolaniyi393@example.com"
+    },
+    {
+        "id": 3,
+        "name": "Carlos Guzmán",
+        "mail": "carlos.guzman87@mailizza.com"
+    },
+    {
+        "id": 4,
+        "name": "Alicia Jaspers",
+        "mail": "alicia.jaspers@examplemail.com"
+    },
+    {
+        "id": 5,
+        "name": "Alice Mendoza",
+        "mail": "alice.mendoza93@example.com"
+    },
+    {
+        "id": 6,
+        "name": "Teresa Martinez",
+        "mail": "tcmartinez@mailservices.net"
+    },
+    {
+        "id": 7,
+        "name": "Scarlett Jensen",
+        "mail": "scarlett.jensen23@example.com"
+    },
+    {
+        "id": 8,
+        "name": "Amelia Robertson",
+        "mail": "amelia.robertson26@example.com"
+    },
+    {
+        "id": 9,
+        "name": "Naomi Fischer",
+        "mail": "naomi.fischer@email.com"
+    },
+    {
+        "id": 10,
+        "name": "Aaron Smith",
+        "mail": "asmith82@example.com"
+    }
+]
